@@ -1,6 +1,6 @@
 {
   "name": "@hoganassessments/maybe-ts",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple functional Maybe library for typescript",
   "repository": {
     "type": "git",
