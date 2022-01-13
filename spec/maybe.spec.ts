@@ -1,4 +1,5 @@
 import { Maybe, None, Some } from "../src/index";
+import { iter } from "../src/maybe";
 
 describe("Maybe", () => {
     describe("ofVal", () => {
@@ -204,6 +205,18 @@ describe("Maybe", () => {
             const spy = jasmine.createSpy('action');
             Maybe.iter(spy, Some<string>("foo"));
             expect(spy).toHaveBeenCalledWith("foo");
+        })
+    })
+
+    describe("withDefault", () => {
+        it("should return the value wrapped inside the input Maybe when it is 'Some'", () => {
+            const actual = Maybe.withDefault("thedefault", Some("thevalue"));
+            expect(actual).toBe("thevalue");
+        })
+
+        it("should return the default value when the input Maybe is 'None'", () => {
+            const actual = Maybe.withDefault("thedefault", None<string>());
+            expect(actual).toBe("thedefault");
         })
     })
 })

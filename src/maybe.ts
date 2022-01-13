@@ -276,6 +276,22 @@ export function iter<T>(action: (val: T) => void, maybe: Maybe<T>): void {
 }
 
 /**
+ * Attempts to unwrap the value from 'maybe'. Returns the provided default when 'maybe' is 'None'.
+ * 
+ * @param def The default value
+ * @param maybe The {@link Maybe} to unwrap
+ * @returns The value from 'maybe' or 'def' if 'maybe' is 'None'
+ */
+export function withDefault<T>(def: T, maybe: Maybe<T>): T {
+    switch(maybe.kind) {
+        case 'Some':
+            return maybe.value;
+        case 'None':
+            return def;
+    }
+}
+
+/**
  * Api for interacting with {@link Maybe}
  */
 export const Maybe = {
@@ -292,5 +308,6 @@ export const Maybe = {
     bind: bind,
     bind2: bind2,
     combine: combine,
-    iter: iter
+    iter: iter,
+    withDefault: withDefault
 };
